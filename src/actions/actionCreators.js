@@ -9,3 +9,10 @@ export function addRecipe(recipe) {
     type: 'ADD_RECIPE_REQUESTED', ...recipe
   };
 }
+
+export function fetchRecipe(id) {
+  return {
+    type: 'RECIPE_FETCH_REQUESTED',
+    id
+  };
+}

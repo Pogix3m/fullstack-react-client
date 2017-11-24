@@ -1,6 +1,6 @@
 // import {} from 'redux-saga';
 import {fork, call, put, takeEvery} from 'redux-saga/effects';
-import {getRecentRecipes, createRecipe} from '../services/api';
+import {getRecentRecipes, createRecipe, fetchRecipe} from '../services/api';
 import {browserHistory} from 'react-router';
 // import {recentRecipes} from "../actions/actionCreators";
 
@@ -24,9 +24,20 @@ function* addRecipeSaga(feathersApp) {
   yield takeEvery('ADD_RECIPE_REQUESTED', addRecipe, feathersApp)
 }
 
+function* callFetchRecipe(feathersApp, action) {
+  const recipe = yield call(fetchRecipe, feathersApp, action.id);
+  yield put({type: 'RECIPE_FETCH_DONE', recipe});
+}
+
+function* fetchRecipeSaga(feathersApp) {
+  yield takeEvery('RECIPE_FETCH_REQUESTED', callFetchRecipe, feathersApp);
+}
+
 export default function* root(feathersApp) {
   yield [
     fork(recentRecipesSaga, feathersApp),
-    fork(addRecipeSaga, feathersApp)
+    fork(addRecipeSaga, feathersApp),
+    fork(fetchRecipeSaga, feathersApp)
   ];
 }
+

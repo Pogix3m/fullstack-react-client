@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Card} from 'semantic-ui-react';
+import {browserHistory} from 'react-router';
 
 class RecipeCard extends Component {
 
@@ -13,6 +14,7 @@ class RecipeCard extends Component {
         header={recipe.name}
         meta="Description"
         description={recipe.description ? recipe.description.substring(0,100) + '...' : ''}
+        onClick={() => { browserHistory.push(`/view/${recipe._id}`)}}
       />
     );
   }

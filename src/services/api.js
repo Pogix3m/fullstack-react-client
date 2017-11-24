@@ -8,5 +8,12 @@ export function getRecentRecipes(app) {
 export function createRecipe(app, recipe) {
   const service = app.service('recipes');
   return service.create(recipe).then((data,err) => data);
+}
+
+export function fetchRecipe(app, id) {
+  const service = app.service('recipes');
+  return service.find({
+    query: {'_id': id}
+  }).then((data,err) => data.data);
 
 }

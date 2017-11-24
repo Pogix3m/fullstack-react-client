@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import Home from './components/Home';
 import AddRecipe from './components/AddRecipe';
+import SingleRecipe from './components/SingleRecipe';
 
 import {Router, Route, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
@@ -15,6 +16,7 @@ const router = (
       <Route path="/" component={App}>
         <IndexRoute component={Home}></IndexRoute>
         <Route path='/recipes/add' component={AddRecipe}></Route>
+        <Route path='/view/:recipeId' component={SingleRecipe}></Route>
       </Route>
     </Router>
   </Provider>
