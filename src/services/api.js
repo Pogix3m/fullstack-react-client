@@ -25,5 +25,17 @@ export function signup(app, email, password) {
   }).then((data, err) => data);
 }
 
-
+export function login(app, email, password) {
+  console.log('email: ', email);
+  console.log('password: ', password);
+  return app.authenticate({
+    type: 'local',
+    email,
+    password})
+    .then(response => response)
+    .catch(e => {
+      console.log('Log in error: ', e);
+       // return null;
+    });
+}
 
