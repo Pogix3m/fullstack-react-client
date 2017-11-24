@@ -17,3 +17,13 @@ export function fetchRecipe(app, id) {
   }).then((data,err) => data.data);
 
 }
+
+export function signup(app, email, password) {
+  const service = app.service('users');
+  return service.create({
+    email, password
+  }).then((data, err) => data);
+}
+
+
+

@@ -16,3 +16,11 @@ export function fetchRecipe(id) {
     id
   };
 }
+
+export function signup(username, password) {
+  return {
+    type: 'SIGNUP_REQUESTED',
+    username,
+    password
+  };
+}
