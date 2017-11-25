@@ -39,3 +39,6 @@ export function login(app, email, password) {
     });
 }
 
+export function logout(app) {
+  return app.logout();
+}
