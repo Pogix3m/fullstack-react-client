@@ -26,16 +26,16 @@ export function signup(app, email, password) {
 }
 
 export function login(app, email, password) {
-  console.log('email: ', email);
-  console.log('password: ', password);
+  // console.log('email: ', email);
+  // console.log('password: ', password);
   return app.authenticate({
-    type: 'local',
+    strategy: 'local',
     email,
     password})
     .then(response => response)
     .catch(e => {
       console.log('Log in error: ', e);
-       // return null;
+       return null;
     });
 }
 
