@@ -36,7 +36,7 @@ class NavBar extends Component {
       <Menu>
         <Menu.Item
           name="addRecipe"
-          onClick={() => browserHistory.push('recipes/add')}>
+          onClick={() => browserHistory.push('/recipes/add')}>
           Add Recipe
         </Menu.Item>
 
