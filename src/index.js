@@ -10,14 +10,16 @@ import LoginPage from './components/LoginPage';
 
 import {Router, Route, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
-import store, {history} from './store';
+import store, {history, app} from './store';
+import {authGood} from './actions/actionCreators';
+import {requireAuthentication} from './components/Auth';
 
 const router = (
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}></IndexRoute>
-        <Route path='/recipes/add' component={AddRecipe}></Route>
+        <Route path='/recipes/add' component={requireAuthentication(AddRecipe)}></Route>
         <Route path='/view/:recipeId' component={SingleRecipe}></Route>
         <Route path='/signup' component={SignupPage}></Route>
         <Route path='/login' component={LoginPage}></Route>
@@ -26,8 +28,17 @@ const router = (
   </Provider>
 );
 
-ReactDOM.render(
-  router,
-  document.getElementById('root')
-);
-
+app.authenticate().then(user => {
+  // console.log('authenticated user: ', user);
+  store.dispatch(authGood(user));
+  ReactDOM.render(
+    router,
+    document.getElementById('root')
+  );
+}, (e) => {
+  console.log('e: ', e);
+  ReactDOM.render(
+    router,
+    document.getElementById('root')
+  );
+});

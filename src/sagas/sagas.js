@@ -45,11 +45,10 @@ function* signupSaga(feathersApp) {
 
 function* tryLogin(feathersApp, action) {
   const user = yield call(login, feathersApp, action.username, action.password);
-  const currUser = Object.assign({}, user, {data: { email: action.username }});
-  console.log('user: ', currUser);
-  yield put({type: 'LOGIN_DONE', user: currUser });
-  if(user) {
-    yield browserHistory.push('');
+  // console.log('tryLogin: ', user);
+  yield put({type: 'LOGIN_DONE', user: user });
+  if(user && user.hasOwnProperty('accessToken')) {
+    yield browserHistory.push(action.next);
   }
 }
 

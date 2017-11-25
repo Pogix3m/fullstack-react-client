@@ -32,9 +32,12 @@ export function login(app, email, password) {
     strategy: 'local',
     email,
     password})
-    .then(response => response)
+    .then(response => {
+      // console.log('login response: ', response);
+      return response;
+    })
     .catch(e => {
-      console.log('Log in error: ', e);
+      // console.log('Log in error: ', e);
        return null;
     });
 }

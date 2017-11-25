@@ -31,7 +31,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const isLoggedIn = this.props.user.hasOwnProperty('data');
+    const isLoggedIn = this.props.user && this.props.user.hasOwnProperty('data');
     return (
       <Menu>
         <Menu.Item

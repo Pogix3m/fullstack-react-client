@@ -25,16 +25,24 @@ export function signup(username, password) {
   };
 }
 
-export function login(username, password) {
+export function login(username, password, next='') {
   return {
     type: 'LOGIN_REQUESTED',
     username,
-    password
+    password,
+    next
   };
 }
 
 export function logout() {
   return {
     type: 'LOGOUT_REQUESTED'
+  };
+}
+
+export function authGood(user) {
+  return {
+    type: 'AUTH_GOOD',
+    user
   };
 }

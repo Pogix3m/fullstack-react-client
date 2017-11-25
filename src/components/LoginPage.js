@@ -13,7 +13,7 @@ class LoginPage extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.login(this.state.username, this.state.password);
+    this.props.login(this.state.username, this.state.password, this.props.location.query.next);
     this.setState({
       username: '',
       password: ''

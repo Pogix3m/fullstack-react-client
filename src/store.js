@@ -20,7 +20,7 @@ const host = 'http://localhost:3030';
 export const app = feathers()
   .configure(rest(host).superagent(superagent))
   .configure(feathers.hooks())
-  .configure(feathers.authentication({store: window.localStorage}));
+  .configure(feathers.authentication({storage: window.localStorage}));
 
 sagaMiddleWare.run(mySaga, app);
 
