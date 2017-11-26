@@ -15,7 +15,7 @@ class NavBar extends Component {
   loggedIn() {
     return (
       <Menu.Menu position="right">
-        <Menu.Item name="user">{this.props.user.data.email}</Menu.Item>
+        <Menu.Item name="user" onClick={() => browserHistory.push('/profile/recipes')}>{this.props.user.data.email}</Menu.Item>
         <Menu.Item name="logout" onClick={this.props.logout}>Logout</Menu.Item>
       </Menu.Menu>
     );

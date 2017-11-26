@@ -1,6 +1,6 @@
 // import {} from 'redux-saga';
 import {fork, call, put, takeEvery} from 'redux-saga/effects';
-import {getRecentRecipes, createRecipe, fetchRecipe, signup, login, logout} from '../services/api';
+import {getRecentRecipes, createRecipe, fetchRecipe, signup, login, logout, fetchMyRecipes} from '../services/api';
 import {browserHistory} from 'react-router';
 // import {recentRecipes} from "../actions/actionCreators";
 
@@ -65,6 +65,16 @@ function* callLogOut(feathersApp) {
 function* logoutSaga(feathersApp) {
   yield takeEvery('LOGOUT_REQUESTED', callLogOut, feathersApp);
 }
+
+
+function* callMyFetchRecipe(feathersApp, action) {
+  const myRecipes = yield call(fetchMyRecipes, feathersApp, action.id);
+  yield put({type: 'MY_RECIPE_FETCH_DONE', myRecipes});
+}
+
+function* myRecipeSaga(feathersApp) {
+  yield takeEvery('MY_RECIPE_FETCH_REQUESTED', callMyFetchRecipe, feathersApp);
+}
 export default function* root(feathersApp) {
   yield [
     fork(recentRecipesSaga, feathersApp),
@@ -72,7 +82,8 @@ export default function* root(feathersApp) {
     fork(fetchRecipeSaga, feathersApp),
     fork(signupSaga, feathersApp),
     fork(loginSaga, feathersApp),
-    fork(logoutSaga, feathersApp)
+    fork(logoutSaga, feathersApp),
+    fork(myRecipeSaga, feathersApp)
   ];
 }
 

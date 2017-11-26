@@ -45,3 +45,12 @@ export function login(app, email, password) {
 export function logout(app) {
   return app.logout();
 }
+
+export function fetchMyRecipes(app, id) {
+  const recipes = app.service('recipes');
+  return recipes.find({
+    query: {
+      'createdBy': id
+    }
+  }).then((data,err) => data.data);
+}

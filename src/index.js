@@ -7,6 +7,7 @@ import AddRecipe from './components/AddRecipe';
 import SingleRecipe from './components/SingleRecipe';
 import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage';
+import MyRecipes from './components/MyRecipes';
 
 import {Router, Route, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
@@ -23,6 +24,7 @@ const router = (
         <Route path='/view/:recipeId' component={SingleRecipe}></Route>
         <Route path='/signup' component={SignupPage}></Route>
         <Route path='/login' component={LoginPage}></Route>
+        <Route path='/profile/recipes' component={requireAuthentication(MyRecipes)}></Route>
       </Route>
     </Router>
   </Provider>

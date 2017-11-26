@@ -8,7 +8,8 @@ function mapStateToProps(state) {
   return {
     recipes: state.recipes,
     currRecipe: state.currRecipe,
-    user: state.checkLogin
+    user: state.checkLogin,
+    myRecipes: state.myRecipes
   }
 }
 

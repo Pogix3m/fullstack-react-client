@@ -46,3 +46,10 @@ export function authGood(user) {
     user
   };
 }
+
+export function fetchMyRecipes(id) {
+  return {
+    type: 'MY_RECIPE_FETCH_REQUESTED',
+    id
+  };
+}
