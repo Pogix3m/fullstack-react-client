@@ -1,16 +1,16 @@
 // import {} from 'redux-saga';
-import {fork, call, put, takeEvery} from 'redux-saga/effects';
-import {getRecentRecipes, createRecipe, fetchRecipe, signup, login, logout, fetchMyRecipes} from '../services/api';
-import {browserHistory} from 'react-router';
+import { fork, call, put, takeEvery } from 'redux-saga/effects';
+import { getRecentRecipes, createRecipe, fetchRecipe, signup, login, logout, fetchMyRecipes } from '../services/api';
+import { browserHistory } from 'react-router';
 // import {recentRecipes} from "../actions/actionCreators";
 
 function* fetchRecentRecipes(feathersApp) {
   const recipes = yield call(getRecentRecipes, feathersApp);
-  yield put({type: 'RECENT_RECIPES_SUCCEEDED', recipes});
+  yield put({ type: 'RECENT_RECIPES_SUCCEEDED', recipes });
 }
 
 function* recentRecipesSaga(feathersApp) {
-  yield takeEvery('RECENT_RECIPES_REQUESTED', fetchRecentRecipes, feathersApp)
+  yield takeEvery('RECENT_RECIPES_REQUESTED', fetchRecentRecipes, feathersApp);
 }
 
 function* addRecipe(feathersApp, action) {
@@ -21,12 +21,12 @@ function* addRecipe(feathersApp, action) {
 }
 
 function* addRecipeSaga(feathersApp) {
-  yield takeEvery('ADD_RECIPE_REQUESTED', addRecipe, feathersApp)
+  yield takeEvery('ADD_RECIPE_REQUESTED', addRecipe, feathersApp);
 }
 
 function* callFetchRecipe(feathersApp, action) {
   const recipe = yield call(fetchRecipe, feathersApp, action.id);
-  yield put({type: 'RECIPE_FETCH_DONE', recipe});
+  yield put({ type: 'RECIPE_FETCH_DONE', recipe });
 }
 
 function* fetchRecipeSaga(feathersApp) {
@@ -46,8 +46,8 @@ function* signupSaga(feathersApp) {
 function* tryLogin(feathersApp, action) {
   const user = yield call(login, feathersApp, action.username, action.password);
   // console.log('tryLogin: ', user);
-  yield put({type: 'LOGIN_DONE', user: user });
-  if(user && user.hasOwnProperty('accessToken')) {
+  yield put({ type: 'LOGIN_DONE', user });
+  if (user && user.hasOwnProperty('accessToken')) {
     yield browserHistory.push(action.next);
   }
 }
@@ -58,7 +58,7 @@ function* loginSaga(feathersApp) {
 
 function* callLogOut(feathersApp) {
   yield call(logout, feathersApp);
-  yield put({type: 'LOGOUT_DONE'});
+  yield put({ type: 'LOGOUT_DONE' });
   yield browserHistory.push('');
 }
 
@@ -69,7 +69,7 @@ function* logoutSaga(feathersApp) {
 
 function* callMyFetchRecipe(feathersApp, action) {
   const myRecipes = yield call(fetchMyRecipes, feathersApp, action.id);
-  yield put({type: 'MY_RECIPE_FETCH_DONE', myRecipes});
+  yield put({ type: 'MY_RECIPE_FETCH_DONE', myRecipes });
 }
 
 function* myRecipeSaga(feathersApp) {
@@ -83,9 +83,7 @@ export default function* root(feathersApp) {
     fork(signupSaga, feathersApp),
     fork(loginSaga, feathersApp),
     fork(logoutSaga, feathersApp),
-    fork(myRecipeSaga, feathersApp)
+    fork(myRecipeSaga, feathersApp),
   ];
 }
-
-
 

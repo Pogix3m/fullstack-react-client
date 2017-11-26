@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Form, Message} from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Button, Form, Message } from 'semantic-ui-react';
 // import {connect} from 'react-redux';
 // import {bindActionCreators} from 'redux';
 
@@ -10,14 +10,14 @@ class AddRecipe extends Component {
     this.state = {
       name: '',
       ingredients: '',
-      description: ''
+      description: '',
     };
 
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleImageChange (e) {
+  handleImageChange(e) {
     e.preventDefault();
 
     const reader = new FileReader();
@@ -26,23 +26,27 @@ class AddRecipe extends Component {
     reader.onloadend = () => {
       this.setState({
         file,
-        imageUrl: reader.result
+        imageUrl: reader.result,
       });
     };
 
     reader.readAsDataURL(file);
   }
 
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault();
 
-    const {name, imageUrl, ingredients, description} = this.state;
+    const {
+      name, imageUrl, ingredients, description,
+    } = this.state;
     this.props.addRecipe({
       recipe: {
-        name, imageUrl,
+        name,
+        imageUrl,
         ingredients: ingredients.split('\n'),
-        description
-      }});
+        description,
+      },
+    });
   }
 
   render() {
@@ -50,33 +54,41 @@ class AddRecipe extends Component {
       <Form onSubmit={this.handleSubmit}>
         <Form.Field>
           <label>Recipe Name</label>
-          <input value={this.state.name}
-                 name="name"
-                 onChange={(e) => this.setState({name: e.target.value})}
-                 placeholder="Recipe name" />
+          <input
+            value={this.state.name}
+            name="name"
+            onChange={e => this.setState({ name: e.target.value })}
+            placeholder="Recipe name"
+          />
         </Form.Field>
 
         <Form.Field>
           <label>Recipe Image</label>
-          <input type="file"
-                 name="name"
-                 onChange={this.handleImageChange} />
+          <input
+            type="file"
+            name="name"
+            onChange={this.handleImageChange}
+          />
         </Form.Field>
 
         <Form.Field>
           <label>Ingredients (one per line)</label>
-          <Form.TextArea value={this.state.ingredients}
-                 name="ingredients"
-                 onChange={(e) => this.setState({ingredients: e.target.value})}
-                 placeholder="ingredients" />
+          <Form.TextArea
+            value={this.state.ingredients}
+            name="ingredients"
+            onChange={e => this.setState({ ingredients: e.target.value })}
+            placeholder="ingredients"
+          />
         </Form.Field>
 
         <Form.Field>
           <label>Description</label>
-          <Form.TextArea value={this.state.description}
-                 name="description"
-                 onChange={(e) => this.setState({description: e.target.value})}
-                 placeholder="description" />
+          <Form.TextArea
+            value={this.state.description}
+            name="description"
+            onChange={e => this.setState({ description: e.target.value })}
+            placeholder="description"
+          />
         </Form.Field>
         <Button type="submit">Submit</Button>
       </Form>

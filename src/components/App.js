@@ -1,5 +1,5 @@
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 
 import Main from './Main';
@@ -9,8 +9,8 @@ function mapStateToProps(state) {
     recipes: state.recipes,
     currRecipe: state.currRecipe,
     user: state.checkLogin,
-    myRecipes: state.myRecipes
-  }
+    myRecipes: state.myRecipes,
+  };
 }
 
 function mapDispatchToProps(dispatch) {

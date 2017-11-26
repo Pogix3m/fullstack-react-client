@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
-import {Header, Container} from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import { Header, Container } from 'semantic-ui-react';
 import NavBar from './NavBar';
 
 class Main extends Component {

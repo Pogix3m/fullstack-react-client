@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Menu} from 'semantic-ui-react';
-import {browserHistory} from 'react-router';
+import React, { Component } from 'react';
+import { Menu } from 'semantic-ui-react';
+import { browserHistory } from 'react-router';
 
 
 class NavBar extends Component {
@@ -24,8 +24,8 @@ class NavBar extends Component {
   loggedOut() {
     return (
       <Menu.Menu position="right">
-        <Menu.Item name="signup" onClick={() => {browserHistory.push('signup')}}>Sign Up</Menu.Item>
-        <Menu.Item name="login" onClick={() => {browserHistory.push('login')}}>Log in</Menu.Item>
+        <Menu.Item name="signup" onClick={() => { browserHistory.push('signup'); }}>Sign Up</Menu.Item>
+        <Menu.Item name="login" onClick={() => { browserHistory.push('login'); }}>Log in</Menu.Item>
       </Menu.Menu>
     );
   }
@@ -36,7 +36,8 @@ class NavBar extends Component {
       <Menu>
         <Menu.Item
           name="addRecipe"
-          onClick={() => browserHistory.push('/recipes/add')}>
+          onClick={() => browserHistory.push('/recipes/add')}
+        >
           Add Recipe
         </Menu.Item>
 

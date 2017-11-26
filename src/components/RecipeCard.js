@@ -1,20 +1,19 @@
-import React, {Component} from 'react';
-import {Card} from 'semantic-ui-react';
-import {browserHistory} from 'react-router';
+import React, { Component } from 'react';
+import { Card } from 'semantic-ui-react';
+import { browserHistory } from 'react-router';
 
 class RecipeCard extends Component {
-
   render() {
-    const {recipe} = this.props;
+    const { recipe } = this.props;
 
     return (
       <Card
-        centered={true}
+        centered
         image={recipe.imageUrl}
         header={recipe.name}
         meta="Description"
-        description={recipe.description ? recipe.description.substring(0,100) + '...' : ''}
-        onClick={() => { browserHistory.push(`/view/${recipe._id}`)}}
+        description={recipe.description ? `${recipe.description.substring(0, 100)}...` : ''}
+        onClick={() => { browserHistory.push(`/view/${recipe._id}`); }}
       />
     );
   }

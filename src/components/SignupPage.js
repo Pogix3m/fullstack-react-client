@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Form} from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Button, Form } from 'semantic-ui-react';
 
 class SignupPage extends Component {
   constructor(props) {
@@ -7,7 +7,7 @@ class SignupPage extends Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,7 +18,7 @@ class SignupPage extends Component {
     this.props.signup(this.state.username, this.state.password);
     this.setState({
       username: '',
-      password: ''
+      password: '',
     });
   }
 
@@ -27,17 +27,21 @@ class SignupPage extends Component {
       <Form onSubmit={this.handleSubmit}>
         <Form.Field>
           <label>Email</label>
-          <input name="username"
-                 onChange={(e) => this.setState({username: e.target.value})}
-                 value={this.state.username}
-                 placeholder="Email"/>
+          <input
+            name="username"
+            onChange={e => this.setState({ username: e.target.value })}
+            value={this.state.username}
+            placeholder="Email"
+          />
         </Form.Field>
         <Form.Field>
           <label>Password</label>
-          <input name="password"
-                 onChange={(e) => this.setState({password: e.target.value})}
-                 value={this.state.password}
-                 placeholder="Password"/>
+          <input
+            name="password"
+            onChange={e => this.setState({ password: e.target.value })}
+            value={this.state.password}
+            placeholder="Password"
+          />
         </Form.Field>
 
         <Button type="submit">Sign Up</Button>
