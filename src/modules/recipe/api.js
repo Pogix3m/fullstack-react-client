@@ -1,28 +1,19 @@
-import { app, usersService } from '../index';
+import { recipesService } from '../index';
 
-export async function signup(payload) {
+export async function findRecipe(payload) {
   try {
-    return await usersService.create(payload);
-  } catch (e) {
-    console.log(e);
+    return await recipesService.find(payload)
+  } catch(err) {
+    console.log(err);
+    return [];
+  }
+}
+
+export async function createRecipe(payload) {
+  try {
+    return await recipesService.createAction(payload);
+  } catch(err) {
+    console.log(err);
     return {};
   }
-
-}
-
-export async function login(payload) {
-
-  try {
-    return await app.authenticate({
-      strategy: 'local',
-      ...payload
-    });
-  } catch(err) {
-    console.log(err)
-    return null;
-  }
-}
-
-export function logout() {
-  return app.logout();
 }

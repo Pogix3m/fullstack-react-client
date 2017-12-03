@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 
-import { getRecentRecipes, createRecipe, fetchRecipe, fetchMyRecipes } from './api';
+import { findRecipes, createRecipe } from './api';
 import {
   RECENT_RECIPES_REQUESTED,
   recentRecipesSucceeded,
@@ -12,8 +12,8 @@ import {
 } from './action'
 
 
-function* fetchRecentRecipes(feathersApp) {
-  const recipes = yield call(getRecentRecipes, feathersApp);
+function* fetchRecentRecipes({ payload }) {
+  const recipes = yield call(findRecipes, payload);
   yield put(recentRecipesSucceeded(recipes));
 }
 
@@ -33,7 +33,7 @@ export function* addRecipeSaga() {
 }
 
 function* callFetchRecipe({ payload }) {
-  const recipe = yield call(fetchRecipe, payload);
+  const recipe = yield call(findRecipes, payload);
   yield put(recipeFetchDone(recipe));
 }
 
@@ -42,7 +42,7 @@ export function* fetchRecipeSaga() {
 }
 
 function* callMyFetchRecipe({ payload }) {
-  const myRecipes = yield call(fetchMyRecipes, payload);
+  const myRecipes = yield call(findRecipes, payload);
   yield put(myRecipeFetchDone(myRecipes));
 }
 

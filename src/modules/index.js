@@ -6,16 +6,22 @@ import feathers from 'feathers-client';
 import rest from 'feathers-rest/client';
 
 import { user } from './user/reducer';
+import { currRecipe, myRecipes, recipes } from './recipe/reducer';
 import * as userSagas from './user/saga';
+import * as recipeSagas from './recipe/saga';
 
 export const rootReducer = combineReducers({
   user,
+  currRecipe,
+  myRecipes,
+  recipes,
   routing: routerReducer,
 });
 
 export function* rootSaga() {
   yield [
     ...Object.values(userSagas),
+    ...Object.values(recipeSagas),
   ].map(fork);
 }
 
