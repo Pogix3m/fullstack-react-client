@@ -2,13 +2,12 @@ import React from 'react';
 
 import { history, app } from './store';
 
-import App from '../modules/App';
-import Home from '../modules/Home';
-import AddRecipe from '../modules/AddRecipe';
-import SingleRecipe from '../modules/SingleRecipe';
-import SignupPage from '../modules/SignupPage';
-import LoginPage from '../modules/LoginPage';
-import MyRecipes from '../modules/MyRecipes';
+import Home from './Home';
+import AddRecipe from './AddRecipe';
+import SingleRecipe from './SingleRecipe';
+import SignupPage from './SignupPage';
+import LoginPage from './LoginPage';
+import MyRecipes from './MyRecipes';
 
 import { Router, Route, IndexRoute } from 'react-router';
 

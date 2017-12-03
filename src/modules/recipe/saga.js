@@ -21,8 +21,8 @@ export function* recentRecipesSaga() {
   yield takeEvery(RECENT_RECIPES_REQUESTED, fetchRecentRecipes);
 }
 
-function* addRecipe(feathersApp, action) {
-  const response = yield call(createRecipe, feathersApp, action.recipe);
+function* addRecipe({ payload }) {
+  const response = yield call(createRecipe, payloads.recipe);
   // yield put({type: 'ADD_RECIPE_SUCCEEDED', recipe});
   // console.log('recipe created: ', response);
   yield browserHistory.push('');

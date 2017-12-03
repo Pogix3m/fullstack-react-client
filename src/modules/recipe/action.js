@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 
 export const RECENT_RECIPES_REQUESTED = 'RECENT_RECIPES_REQUESTED';
-export const recentRecipe = createAction(RECENT_RECIPES_REQUESTED);
+export const requestRecentRecipe = createAction(RECENT_RECIPES_REQUESTED);
 
 export const ADD_RECIPE_REQUESTED = 'ADD_RECIPE_REQUESTED';
 export const addRecipe = createAction(ADD_RECIPE_REQUESTED);
