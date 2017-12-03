@@ -7,18 +7,18 @@ export async function signup(payload) {
     console.log(e);
     return {};
   }
-
 }
 
 export async function login(payload) {
-
   try {
-    return await app.authenticate({
+    const user = await app.authenticate({
       strategy: 'local',
-      ...payload
+      ...payload,
     });
-  } catch(err) {
-    console.log(err)
+    // console.log('awts: ', user);
+    return user;
+  } catch (err) {
+    console.log(err);
     return null;
   }
 }

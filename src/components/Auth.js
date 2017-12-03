@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { history } from '../store';
 
-export function requireAuthentication(Component) {
+export default function requireAuthentication(Component) {
   class AuthenticateComponent extends React.Component {
     componentWillMount() {
       this.checkAuth();
@@ -13,21 +13,24 @@ export function requireAuthentication(Component) {
     }
 
     checkAuth() {
-      if (!this.props.user.hasOwnProperty('data')) {
+      console.log('user: ', this.props);
+      if (!this.props.user || !this.props.user.hasOwnProperty('data')) {
         const redirectAfterLogin = this.props.location.pathname;
-        browserHistory.push(`/login?next=${redirectAfterLogin}`);
+        history.push(`/login?next=${redirectAfterLogin}`);
       }
     }
 
     render() {
       return (
         <div>
-          { this.props.user.hasOwnProperty('data') && <Component {...this.props} /> }
+          { this.props.user && this.props.user.hasOwnProperty('data') && <Component {...this.props} /> }
         </div>
       );
     }
   }
 
-  const mapStateToProps = state => ({});
+  const mapStateToProps = state => ({
+    user: state.user
+  });
   return connect(mapStateToProps)(AuthenticateComponent);
 }

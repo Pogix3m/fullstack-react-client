@@ -2,17 +2,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import View from './View';
-import { requestRecipe } from '../../modules/recipe/action';
+import { logout } from '../../modules/user/action';
 
 function mapStateToProps(state) {
   return {
-    currRecipe: state.currRecipe,
+    user: state.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    requestRecipe,
+    logout,
   }, dispatch);
 }
 

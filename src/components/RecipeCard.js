@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
-import { browserHistory } from 'react-router';
+import { history } from '../store';
 
 export default ({ recipe }) => (
   <Card
@@ -9,6 +9,6 @@ export default ({ recipe }) => (
     header={recipe.name}
     meta="Description"
     description={recipe.description ? `${recipe.description.substring(0, 100)}...` : ''}
-    onClick={() => { browserHistory.push(`/view/${recipe._id}`); }}
+    onClick={() => { history.push(`/view/${recipe._id}`); }}
   />
 );

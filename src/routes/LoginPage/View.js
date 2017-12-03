@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import { Button, Form } from 'semantic-ui-react';
 
 class LoginPage extends Component {
@@ -13,10 +14,15 @@ class LoginPage extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
+    const qs = queryString.parse(this.props.location.search);
+    let next = '';
+    if(qs && qs.next) {
+      next = qs.next;
+    }
     this.props.login({
       email: this.state.username,
       password: this.state.password,
-      next: this.props.location.query.next || ''
+      next: next,
     });
     this.setState({
       username: '',

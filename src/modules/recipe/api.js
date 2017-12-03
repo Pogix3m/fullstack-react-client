@@ -1,9 +1,14 @@
 import { recipesService } from '../index';
 
-export async function findRecipe(payload) {
+export async function findRecipes(payload) {
   try {
-    return await recipesService.find(payload)
-  } catch(err) {
+    const recipes = await recipesService.find(payload);
+    if(recipes && recipes.data instanceof Array) {
+      return recipes.data;
+    }
+
+    return [];
+  } catch (err) {
     console.log(err);
     return [];
   }
@@ -12,7 +17,7 @@ export async function findRecipe(payload) {
 export async function createRecipe(payload) {
   try {
     return await recipesService.createAction(payload);
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     return {};
   }

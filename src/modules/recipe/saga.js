@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { browserHistory } from 'react-router';
+import { history } from '../../store';
 
 import { findRecipes, createRecipe } from './api';
 import {
@@ -8,8 +8,9 @@ import {
   ADD_RECIPE_REQUESTED,
   RECIPE_FETCH_REQUESTED,
   recipeFetchDone,
-  MY_RECIPE_FETCH_REQUESTED
-} from './action'
+  MY_RECIPE_FETCH_REQUESTED,
+  myRecipeFetchDone,
+} from './action';
 
 
 function* fetchRecentRecipes({ payload }) {
@@ -22,10 +23,10 @@ export function* recentRecipesSaga() {
 }
 
 function* addRecipe({ payload }) {
-  const response = yield call(createRecipe, payloads.recipe);
+  const response = yield call(createRecipe, payload.recipe);
   // yield put({type: 'ADD_RECIPE_SUCCEEDED', recipe});
-  // console.log('recipe created: ', response);
-  yield browserHistory.push('');
+  console.log('recipe created: ', response);
+  yield history.push('');
 }
 
 export function* addRecipeSaga() {

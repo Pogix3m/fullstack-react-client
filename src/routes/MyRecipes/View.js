@@ -8,6 +8,10 @@ class MyRecipes extends Component {
     this.props.requestMyRecipe(this.props.user.data._id);
   }
 
+  // componentWillMount(){
+  //   this.props.requestMyRecipe(this.props.user.data._id);
+  // }
+
   render() {
     return (
       <Card.Group itemsPerRow={5}>

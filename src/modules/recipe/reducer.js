@@ -1,6 +1,6 @@
 import { handleAction } from 'redux-actions';
 
-import {recipeFetchDone, myRecipeFetchDone, recentRecipesSucceeded} from './action';
+import { recipeFetchDone, myRecipeFetchDone, recentRecipesSucceeded } from './action';
 
 export const currRecipe = handleAction(recipeFetchDone, {
   next(state, { payload }) {

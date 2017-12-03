@@ -17,7 +17,7 @@ class SignupPage extends Component {
     e.preventDefault();
     this.props.signup({
       email: this.state.username,
-      password: this.state.password
+      password: this.state.password,
     });
     this.setState({
       username: '',

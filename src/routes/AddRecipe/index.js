@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     addRecipe,
-  },dispatch);
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);

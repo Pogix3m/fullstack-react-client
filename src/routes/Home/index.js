@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     requestRecentRecipe,
-  },dispatch);
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(View);

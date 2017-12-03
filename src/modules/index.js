@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 import { routerReducer } from 'react-router-redux';
 import superagent from 'superagent';
 import feathers from 'feathers-client';
@@ -19,10 +19,10 @@ export const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-  yield [
+  yield all([
     ...Object.values(userSagas),
     ...Object.values(recipeSagas),
-  ].map(fork);
+  ].map(fork));
 }
 
 const host = 'http://localhost:3030';
