@@ -17,36 +17,6 @@ export function fetchRecipe(id) {
   };
 }
 
-export function signup(username, password) {
-  return {
-    type: 'SIGNUP_REQUESTED',
-    username,
-    password,
-  };
-}
-
-export function login(username, password, next = '') {
-  return {
-    type: 'LOGIN_REQUESTED',
-    username,
-    password,
-    next,
-  };
-}
-
-export function logout() {
-  return {
-    type: 'LOGOUT_REQUESTED',
-  };
-}
-
-export function authGood(user) {
-  return {
-    type: 'AUTH_GOOD',
-    user,
-  };
-}
-
 export function fetchMyRecipes(id) {
   return {
     type: 'MY_RECIPE_FETCH_REQUESTED',

@@ -1,8 +1,6 @@
-// import {} from 'redux-saga';
 import { fork, call, put, takeEvery } from 'redux-saga/effects';
 import { getRecentRecipes, createRecipe, fetchRecipe, signup, login, logout, fetchMyRecipes } from '../services/api';
 import { browserHistory } from 'react-router';
-// import {recentRecipes} from "../actions/actionCreators";
 
 function* fetchRecentRecipes(feathersApp) {
   const recipes = yield call(getRecentRecipes, feathersApp);

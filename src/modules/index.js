@@ -1,32 +1,22 @@
 import { combineReducers } from 'redux';
+import { fork } from 'redux-saga/effects';
 import { routerReducer } from 'react-router-redux';
 import superagent from 'superagent';
 import feathers from 'feathers-client';
 import rest from 'feathers-rest/client';
 
-import recipes from './recipes';
-import currRecipe from './currRecipe';
-import checkLogin from './checkLogin';
-import myRecipes from './myRecipes';
+import { user } from './user/reducer';
+import * as userSagas from './user/saga';
 
 export const rootReducer = combineReducers({
-  recipes,
-  currRecipe,
-  checkLogin,
-  myRecipes,
+  user,
   routing: routerReducer,
 });
 
-export function* rootSaga(feathersApp) {
+export function* rootSaga() {
   yield [
-    fork(recentRecipesSaga, feathersApp),
-    fork(addRecipeSaga, feathersApp),
-    fork(fetchRecipeSaga, feathersApp),
-    fork(signupSaga, feathersApp),
-    fork(loginSaga, feathersApp),
-    fork(logoutSaga, feathersApp),
-    fork(myRecipeSaga, feathersApp),
-  ];
+    ...Object.values(userSagas),
+  ].map(fork);
 }
 
 const host = 'http://localhost:3030';
@@ -34,3 +24,6 @@ export const app = feathers()
   .configure(rest(host).superagent(superagent))
   .configure(feathers.hooks())
   .configure(feathers.authentication({ storage: window.localStorage }));
+
+export const usersService = app.service('users');
+export const recipesService = app.service('recipes');
